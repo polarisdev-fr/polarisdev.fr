@@ -19,7 +19,7 @@ export default function RootLayout({
         <link href="https://fonts.cdnfonts.com/css/aquire" rel="stylesheet"/>
       </head>
       <body 
-        className={cn(aquire.className, "min-h-screen bg-background font-sans antialiased")}
+        className={cn(aquire.variable, "min-h-screen bg-background font-sans antialiased")}
       >
         <Providers>
           {children}
