@@ -3,10 +3,12 @@ import { aquire, cn } from "@/lib/utils";
 //import { polarismetadata } from "@/lib/constants";
 import "./globals.css";
 import { Providers } from "./providers";
-
+import { Orbitron } from 'next/font/google'
 /*export const metadata: Metadata = {
   ...polarismetadata
 }*/
+
+const orbitron = Orbitron({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -15,11 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
-      <head>
-        <link href="https://fonts.cdnfonts.com/css/aquire" rel="stylesheet"/>
-      </head>
       <body 
-        className={cn(aquire.variable, "min-h-screen bg-background font-sans antialiased")}
+        className={cn(aquire.className, "min-h-screen bg-background antialiased")}
       >
         <Providers>
           {children}
