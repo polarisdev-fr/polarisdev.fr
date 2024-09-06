@@ -10,7 +10,7 @@ export const currentUser = async () => {
     return user;
 }
 
-export const requiredCurrentuser = async () => {
+export const requiredCurrentUser = async () => {
     const user = await currentUser();
 
     if(!user) throw new Error('User not found');

@@ -5,7 +5,7 @@ import { signIn, signOut } from "next-auth/react"
 
 export const LoginButton = () => {
     return (
-        <Button onClick={() => signIn()} variant="secondary">
+        <Button onClick={() => signIn("github", { callbackUrl: '/dashboard', redirect: true})} variant="secondary">
             <LogInIcon className="w-4 h-4 mr-2"/>
             <span>Login</span>
         </Button>

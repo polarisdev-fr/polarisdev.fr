@@ -81,7 +81,7 @@ export default function UserMenu() {
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {signOut()}}>
+                        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {signOut({ callbackUrl: '/', redirect:true })}}>
                             <LogOut className="w-4 h-4 mr-3 text-muted-foreground" />
                             Sign out
                         </DropdownMenuItem>

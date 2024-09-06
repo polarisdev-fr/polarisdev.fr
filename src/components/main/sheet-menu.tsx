@@ -7,6 +7,7 @@ import {
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import { ModeToggle } from "@/features/theme/mode-toogle";
+import { LoginButton } from "./auth-buttons";
 
 export function SheetMenu({ children }: { children: React.ReactNode }) {
   return (
@@ -23,6 +24,7 @@ export function SheetMenu({ children }: { children: React.ReactNode }) {
         <SheetContent>
             <div className="flex flex-col space-y-4 p-4">
                 {children}
+                <LoginButton/>
                 <ModeToggle/>
             </div>
         </SheetContent>
