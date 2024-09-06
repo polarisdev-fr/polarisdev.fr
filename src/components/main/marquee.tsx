@@ -20,11 +20,11 @@ export default function MarqueeBranding() {
         <div className="mt-12 overflow-x-auto items-center justify-center flex gap-8">
           <div className="flex items-center gap-8 py-4">
             {brands.map((brand, index) => (
-                <TooltipProvider>
+                <TooltipProvider key={index}>
                     <Tooltip delayDuration={200}>
                         <TooltipTrigger>
-                            <Link key={index} href={brand.href} className="flex h-12 w-32 items-center justify-center" prefetch={false}>
-                                <img
+                            <Link href={brand.href} className="flex h-12 w-32 items-center justify-center" prefetch={false}>
+                                <Image
                                     src={brand.image}
                                     width="140"
                                     height="70"
