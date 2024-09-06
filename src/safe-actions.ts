@@ -1,4 +1,4 @@
-import { createSafeActionClient } from "next-safe-action";
+/*import { createSafeActionClient } from "next-safe-action";
 import { currentUser } from "./auth/current-user";
 
 export class ActionError extends Error {
@@ -28,4 +28,4 @@ export const userAction = createSafeActionClient({
 
         return { user };
     }
-})
+})*/
