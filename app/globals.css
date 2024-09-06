@@ -89,6 +89,7 @@
     @apply border-border;
   }
   body {
+    font-family: var(--font-aquire), sans-serif;
     @apply bg-background text-foreground;
   }
 }
