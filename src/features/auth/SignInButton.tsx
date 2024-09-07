@@ -1,21 +1,22 @@
-import { signIn } from "@/auth/auth"
+"use client"
 import { Button } from "@/components/ui/button"
-import { LogIn } from "lucide-react"
+import { signIn } from "next-auth/react";
 
-export const SignInButton =  () => {
+interface SignInButtonProps {
+    icon: React.ReactNode;
+    method: string;
+    text?: string;
+    className?: string;
+}
+
+export const SignInButton =  ({ icon, method, text, className }: SignInButtonProps) => {
     return (
-        <form>
-            <Button 
-                variant={"secondary"}
-                size={"sm"}
-                formAction={async () => {
-                    "use server";
-                    await signIn();
-                }}
-            >
-                <LogIn size={16} className={"mr-2"}/>
-                Sign In
-            </Button>
-        </form>
+        <Button 
+                className={className}
+                onClick={() => signIn(method, { callbackUrl: '/dashboard', redirect: true })}
+        >
+            {icon}
+            {text ?? 'Sign In'}
+        </Button>
     )
 }

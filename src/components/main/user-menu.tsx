@@ -9,8 +9,8 @@ import { CreditCard, LayoutGrid, LogOut, User } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "@/features/theme/mode-toogle";
 import { Button } from "../ui/button";
-//import { UserBilling } from "@/lib/actions/user-settings";
 import { Tooltip, TooltipTrigger, TooltipProvider, TooltipContent } from "../ui/tooltip";
+import { UserBilling } from "@/lib/actions/user-settings";
 
 export default function UserMenu() {
   const [session, setSession] = useState<Session | null>(null);
@@ -73,11 +73,11 @@ export default function UserMenu() {
                                         Account
                                     </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="hover:cursor-pointer" asChild onClick={() => /*UserBilling()*/ null}>
-                                    <Link href="/account" className="flex items-center">
+                                <DropdownMenuItem className="hover:cursor-pointer" asChild onClick={() => UserBilling()}>
+                                    <div className="flex items-center">
                                         <CreditCard className="w-4 h-4 mr-3 text-muted-foreground" />
                                         Billing
-                                    </Link>
+                                    </div>
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                         <DropdownMenuSeparator />

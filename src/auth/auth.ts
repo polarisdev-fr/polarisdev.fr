@@ -14,6 +14,9 @@ export const { handlers, auth: baseAuth, signIn, signOut } = NextAuth({
         clientSecret: env.AUTH_GITHUB_SECRET,
     })
   ],
+  pages: {
+    signIn: '/login',
+  },
   events: {
     createUser: async (message) => {
         const userId = message.user.id;
