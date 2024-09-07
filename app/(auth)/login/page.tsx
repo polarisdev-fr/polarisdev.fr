@@ -21,8 +21,8 @@ export default function LoginPage() {
                     <div className="mt-8 w-full">
                         <div className="mt-8 w-full">
                             <div className="grid grid-cols-1 gap-4">
-                                <SignInButton icon={<FaDiscord className="w-6 h-6 pr-2"/>} method="discord" text="Continue with Discord"                                     className="bg-[#004EE4] transition-all duration-200 hover:bg-discord-hover rounded-md flex items-center justify-center gap-3 text-white px-4 py-3 font-light w-full"/>
-                                <SignInButton icon={<FaGoogle className="w-6 h-6 pr-2"/>} method="google" text="Continue with Google" className="bg-[#FFF] text-black transition-all duration-200 hover:bg-discord-hover rounded-md flex items-center justify-center gap-3font-sans px-4 py-3 font-light w-full"/>
+                                <SignInButton icon={<FaDiscord className="w-6 h-6 pr-2"/>} method="discord" text="Continue with Discord" className="bg-[#004EE4] transition-all duration-200 hover:bg-discord-hover rounded-md flex items-center justify-center gap-3 text-white px-4 py-3 font-light w-full" disabled/>
+                                <SignInButton icon={<FaGoogle className="w-6 h-6 pr-2"/>} method="google" text="Continue with Google" className="bg-[#FFF] text-black transition-all duration-200 hover:bg-discord-hover rounded-md flex items-center justify-center gap-3font-sans px-4 py-3 font-light w-full" disabled/>
                                 <SignInButton icon={<FaGithub className="w-6 h-6 pr-2"/>} method="github" text="Continue with GitHub" className="bg-[#333] transition-all duration-200 hover:bg-discord-hover rounded-md flex items-center justify-center gap-3 text-white font-light px-4 py-3 w-full"/>
                             </div>
                         </div>

@@ -7,11 +7,13 @@ interface SignInButtonProps {
     method: string;
     text?: string;
     className?: string;
+    disabled?: boolean;
 }
 
-export const SignInButton =  ({ icon, method, text, className }: SignInButtonProps) => {
+export const SignInButton =  ({ icon, method, text, className, disabled }: SignInButtonProps) => {
     return (
         <Button 
+                disabled={disabled}
                 className={className}
                 onClick={() => signIn(method, { callbackUrl: '/dashboard', redirect: true })}
         >
