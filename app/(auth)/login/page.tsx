@@ -4,9 +4,6 @@ import { Infinity } from "lucide-react"
 import { SignInButton } from "@/features/auth/SignInButton"
 import { FaGoogle, FaDiscord, FaGithub } from "react-icons/fa";
 
-export const description =
-  "A login page with two columns. The first column has the login form with email and password. There's a Forgot your passwork link and a link to sign up if you do not have an account. The second column has a cover image."
-
 export default function LoginPage() {
   return (
     <section className="py-4 px-6 lg:p-6 min-h-screen flex items-center justify-center">
