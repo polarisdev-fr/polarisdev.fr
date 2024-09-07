@@ -8,6 +8,13 @@ import { Orbitron } from 'next/font/google'
   ...polarismetadata
 }*/
 
+export const metadata: Metadata = {
+  title: "polarisdev.fr",
+  description: "Make your dreams come true with PolarisDev",
+  metadataBase: new URL("https://polarisdev.fr"),
+};
+
+
 const orbitron = Orbitron({ subsets: ['latin'] })
 
 export default function RootLayout({
