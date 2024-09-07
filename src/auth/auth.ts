@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import Github from "next-auth/providers/github"
+import Discord from "next-auth/providers/discord"
 import { env } from "@/env"
 import { stripe } from "@/stripe"
 const prisma = new PrismaClient()
@@ -12,6 +13,10 @@ export const { handlers, auth: baseAuth, signIn, signOut } = NextAuth({
     Github({
         clientId: env.AUTH_GITHUB_ID,
         clientSecret: env.AUTH_GITHUB_SECRET,
+    }),
+    Discord({
+        clientId: env.AUTH_DISCORD_ID,
+        clientSecret: env.AUTH_DISCORD_SECRET,
     })
   ],
   pages: {
