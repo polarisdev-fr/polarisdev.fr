@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export const CTASection = () => {
   return (
     <Section>
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+        <Card className="shadow-lg">
             <CardContent>
             <div className="flex flex-col items-center gap-4 lg:gap-6 w-full mt-10 mb-10">
                 <h2 className="font-title font-bold text-2xl lg:text-4xl text-center">
@@ -31,6 +31,7 @@ export const CTASection = () => {
             </div>
             </CardContent>
         </Card>
+        <div className="bg-gradient-linear"/>
     </Section>
   );
 };
