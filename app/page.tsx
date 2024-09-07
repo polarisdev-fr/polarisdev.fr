@@ -3,6 +3,9 @@ import { FeaturesSection } from "@/components/main/features";
 import MarqueeBranding from "@/components/main/marquee";
 import { PreviewMockup } from "@/components/main/preview-mockup";
 import { Badge } from "@/components/ui/badge";
+import { CTASection } from "@/features/landing/cta/ctaAction";
+import { FAQSection } from "@/features/landing/faq/faqSection";
+import { PricingSection } from "@/features/landing/pricing/pricing";
 import { COMPANY_FULL_NAME } from "@/lib/constants";
 
 export default function Home() {
@@ -27,6 +30,9 @@ export default function Home() {
           </p>
         </div>
         <FeaturesSection/>
+        <PricingSection/>
+        <FAQSection/>
+        <CTASection/>
       </section>
     </ContentLayout>
   );
