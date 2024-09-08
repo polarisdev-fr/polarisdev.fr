@@ -33,7 +33,9 @@ export default async function UserPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+          <BreadcrumbLink asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -51,6 +53,7 @@ export default async function UserPage() {
           <div className="space-y-2 text-center sm:text-left">
             <h2 className="text-2xl font-bold">{user?.name}</h2>
             <p className="text-muted-foreground">{user?.email}</p>
+            <p className="text-muted-foreground text-[12px]">Stripe ID: {user?.stripeCustomerId}</p>
           </div>
         </div>
 
