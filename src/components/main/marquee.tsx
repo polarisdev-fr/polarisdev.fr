@@ -23,7 +23,7 @@ export default function MarqueeBranding() {
                 <TooltipProvider key={index}>
                     <Tooltip delayDuration={200}>
                         <TooltipTrigger>
-                            <Link href={brand.href} className="flex h-12 w-32 items-center justify-center" prefetch={false}>
+                            <Link href={brand.href} target="_blank" className="flex h-12 w-32 items-center justify-center" prefetch={false}>
                                 <Image
                                     src={brand.image}
                                     width="140"
