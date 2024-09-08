@@ -29,14 +29,14 @@ export function Sidebar() {
             "transition-transform ease-in-out duration-300 mb-1",
             sidebar?.isOpen === false ? "translate-x-1" : "translate-x-0"
           )}
-          variant="link"
+          variant={"link"}
           asChild
         >
-          <Link href="/dashboard" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Infinity className="w-6 h-6 mr-1" />
             <h1
               className={cn(
-                "font-bold text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300",
+                "font-bold text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300 no-underline",
                 sidebar?.isOpen === false
                   ? "-translate-x-96 opacity-0 hidden"
                   : "translate-x-0 opacity-100"

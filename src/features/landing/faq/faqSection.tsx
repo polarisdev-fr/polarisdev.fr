@@ -43,7 +43,7 @@ import {
   
   export const FAQSection = () => {
     return (
-      <Section className="flex w-full flex-row items-start gap-4 max-lg:flex-col max-lg:items-center">
+      <Section className="w-full flex flex-col max-lg:grid max-lg:grid-cols-1 max-lg:gap-6 lg:flex-row lg:items-start lg:gap-4">
         <div className="flex-1 max-lg:text-center">
           <h2 className="text-xl font-bold text-primary">FAQ</h2>
           <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
@@ -65,5 +65,6 @@ import {
           </Accordion>
         </div>
       </Section>
+
     );
   };

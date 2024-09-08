@@ -30,7 +30,7 @@ export const PricingSection = async () => {
       <div className="flex justify-center gap-4 max-lg:flex-col">
         <PricingCard
           title="Starter"
-          price={0}
+          price={20}
           description="Get started with essential development tools and support."
           items={[
             "Basic API Integration",

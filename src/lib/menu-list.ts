@@ -5,7 +5,8 @@ import {
     Bookmark,
     SquarePen,
     LayoutGrid,
-    LucideIcon
+    LucideIcon,
+    Ticket
   } from "lucide-react";
   
   type Submenu = {
@@ -95,6 +96,18 @@ import {
             icon: Settings,
             submenus: []
           }
+        ]
+      },
+      {
+        groupLabel: "Support",
+        menus: [
+          {
+            href: "/dashboard/tickets",
+            label: "Tickets",
+            active: pathname.includes("/tickets"),
+            icon: Ticket,
+            submenus: []
+          },
         ]
       }
     ];

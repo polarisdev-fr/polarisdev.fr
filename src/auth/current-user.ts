@@ -1,5 +1,5 @@
 import { User } from "@prisma/client"
-import { baseAuth } from "./auth"
+import { baseAuth, signIn } from "./auth"
 
 export const currentUser = async () => {
     const session = await baseAuth();
@@ -13,7 +13,7 @@ export const currentUser = async () => {
 export const requiredCurrentUser = async () => {
     const user = await currentUser();
 
-    if(!user) throw new Error('User not found');
+    if(!user) await signIn();
 
     return user;
 }
