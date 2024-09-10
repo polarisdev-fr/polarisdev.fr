@@ -38,6 +38,7 @@ export async function UserBilling() {
     })
 
     if(!session.url) throw new Error('Session URL not found')
+    prisma.$disconnect()
     redirect(session.url)
 }
 
@@ -79,12 +80,11 @@ export async function GetUserRole() {
         },
     })
 
-    console.log(user?.role)
-
     if(!user) {
         throw new Error('User not found')
     }
 
+    prisma.$disconnect()
     return user.role
 }
 
@@ -109,5 +109,6 @@ export async function CheckIfUserHasRole(role: Array<string>) {
         throw new Error('User not found')
     }
 
+    prisma.$disconnect()
     return role.includes(user.role) ? true : false
 }

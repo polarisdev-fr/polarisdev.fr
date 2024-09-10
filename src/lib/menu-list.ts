@@ -1,3 +1,4 @@
+import { Role } from "@prisma/client";
 import {
     Tag,
     Users,
@@ -21,6 +22,7 @@ import {
     active: boolean;
     icon: LucideIcon
     submenus: Submenu[];
+    role?: Role[];
   };
   
   type Group = {
@@ -42,7 +44,7 @@ import {
           }
         ]
       },
-      {
+      /*{
         groupLabel: "Contents",
         menus: [
           {
@@ -78,7 +80,7 @@ import {
             submenus: []
           }
         ]
-      },
+      },*/
       {
         groupLabel: "Settings",
         menus: [
@@ -87,6 +89,7 @@ import {
             label: "Users",
             active: pathname.includes("/users"),
             icon: Users,
+            role: [Role.ADMIN, Role.FOUNDER],
             submenus: []
           },
           {
@@ -94,6 +97,7 @@ import {
             label: "Account",
             active: pathname.includes("/account"),
             icon: Settings,
+            role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER],
             submenus: []
           }
         ]

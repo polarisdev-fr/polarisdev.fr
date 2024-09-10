@@ -20,7 +20,7 @@ export const Providers = (props: PropsWithChildren) => {
             >
                 <QueryClientProvider client={queryClient}>
                     <Toaster/>
-                    <GoogleAnalytics gaId={"GTM-T8Z4CGVV"} />
+                    <GoogleAnalytics gaId={"G-WGGG0HXC39"} />
                     {props.children}
                 </QueryClientProvider>
             </ThemeProvider>
