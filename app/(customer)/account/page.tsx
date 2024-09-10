@@ -1,11 +1,10 @@
-import { useState } from 'react'
+// app/(customer)/account/page.tsx
+
 import { ContentLayout } from '@/components/dashboard/content-layout'
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Github } from 'lucide-react'
 import { FaDiscord } from 'react-icons/fa'
 import {
@@ -18,9 +17,10 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from 'next/link'
 import { currentUser } from '@/auth/current-user'
+import DeleteAccountButton from './delete-account-button'
 
 export default async function UserPage() {
-  const user = await currentUser()
+  const user = await currentUser() // Fetch data server-side
 
   return (
     <ContentLayout title="User Profile">
@@ -33,7 +33,7 @@ export default async function UserPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-          <BreadcrumbLink asChild>
+            <BreadcrumbLink asChild>
               <Link href="/dashboard">Dashboard</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -64,7 +64,7 @@ export default async function UserPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" value={user?.name ?? ''} disabled/>
+              <Input id="name" value={user?.name ?? ''} disabled />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -83,49 +83,22 @@ export default async function UserPage() {
                 <Github className="w-5 h-5" />
                 <span>GitHub</span>
               </div>
-              <Switch
-                checked={false}
-                //onCheckedChange={() => handleConnectionToggle('github')}
-              />
+              <Switch checked={false} />
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <FaDiscord className="w-5 h-5" />
                 <span>Discord</span>
               </div>
-              <Switch
-                checked={false}
-                //onCheckedChange={() => handleConnectionToggle('discord')}
-              />
+              <Switch checked={false} />
             </div>
           </div>
         </div>
 
         <Separator />
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-destructive">Danger Zone</h3>
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete Account</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete your
-                  account and remove your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-destructive text-destructive-foreground">
-                  Delete Account
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </div>
+        {/* Client-side component for delete functionality */}
+        <DeleteAccountButton />
       </div>
     </ContentLayout>
   )

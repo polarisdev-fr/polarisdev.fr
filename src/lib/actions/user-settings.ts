@@ -40,3 +40,24 @@ export async function UserBilling() {
     if(!session.url) throw new Error('Session URL not found')
     redirect(session.url)
 }
+
+export async function UserDeleteAccount() {
+    'use server'
+
+    const authSession = await baseAuth()
+    if(!authSession?.user) {
+        redirect('/api/auth/signin')
+    }
+
+    const user = await prisma.user.delete({
+        where: {
+            id: authSession?.user?.id,
+        },
+    })
+
+    if(!user) {
+        throw new Error('User not found')
+    }
+
+    redirect('/')
+}

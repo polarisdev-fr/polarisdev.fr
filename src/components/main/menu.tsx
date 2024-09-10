@@ -6,7 +6,6 @@ export const Navbar = () => {
       <Menu>
         <MenuItem item="Services" href={"/services"}/>
         <MenuItem item="Products" href={"/products"}/>
-        <MenuItem item="Pricing" href={"/pricing"}/>
         <MenuItem item="Contact" href={"/contact"}/>              
       </Menu>
     )
