@@ -11,6 +11,7 @@ export const env = createEnv({
     AUTH_DISCORD_SECRET: z.string(),
     STRIPE_SECRET_KEY: z.string(),
     RESEND_API_KEY: z.string(),
+    GOOGLE_ANALYTICS_ID: z.string(),
   },
   client: {},
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
@@ -23,5 +24,6 @@ export const env = createEnv({
     AUTH_DISCORD_SECRET: process.env.AUTH_DISCORD_SECRET,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
 });

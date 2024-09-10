@@ -19,6 +19,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   products      Product[]
+  role          Role            @default(USER)
 
   Authenticator Authenticator[]
   supportTickets SupportTicket[]
@@ -27,6 +28,15 @@ model User {
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  HELPER
+  MODERATOR
+  DEVELOPER
+  ADMIN
+  FOUNDER
 }
 
 enum Plan {

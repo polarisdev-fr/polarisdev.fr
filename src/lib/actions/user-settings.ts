@@ -61,3 +61,53 @@ export async function UserDeleteAccount() {
 
     redirect('/')
 }
+
+export async function GetUserRole() {
+    'use server'
+
+    const authSession = await baseAuth()
+    if(!authSession?.user) {
+        return null
+    }
+
+    const user = await prisma.user.findUnique({
+        where: {
+            id: authSession?.user?.id,
+        },
+        select: {
+            role: true,
+        },
+    })
+
+    console.log(user?.role)
+
+    if(!user) {
+        throw new Error('User not found')
+    }
+
+    return user.role
+}
+
+export async function CheckIfUserHasRole(role: Array<string>) {
+    'use server'
+
+    const authSession = await baseAuth()
+    if(!authSession?.user) {
+        return false
+    }
+
+    const user = await prisma.user.findUnique({
+        where: {
+            id: authSession?.user?.id,
+        },
+        select: {
+            role: true,
+        },
+    })
+
+    if(!user) {
+        throw new Error('User not found')
+    }
+
+    return role.includes(user.role) ? true : false
+}

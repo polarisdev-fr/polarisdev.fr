@@ -8,6 +8,13 @@ import { Separator } from "@/components/ui/separator"
 import { Github } from 'lucide-react'
 import { FaDiscord } from 'react-icons/fa'
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -18,6 +25,8 @@ import {
 import Link from 'next/link'
 import { currentUser } from '@/auth/current-user'
 import DeleteAccountButton from './delete-account-button'
+import { Role } from '@prisma/client'
+import { CheckIfUserHasRole, GetUserRole } from '@/lib/actions/user-settings'
 
 export default async function UserPage() {
   const user = await currentUser() // Fetch data server-side
@@ -69,6 +78,21 @@ export default async function UserPage() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" value={user?.email} disabled />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="role">Role</Label>
+              <Select>
+                <SelectTrigger className="w-[180px]" disabled>
+                  <SelectValue placeholder={GetUserRole()} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={Role?.USER || 'USER'}>User</SelectItem>
+                  <SelectItem value={Role?.HELPER || 'HELPER'}>Helper</SelectItem>
+                  <SelectItem value={Role?.MODERATOR || 'MODERATOR'}>Moderator</SelectItem>
+                  <SelectItem value={Role?.ADMIN || 'ADMIN'}>Admin</SelectItem>
+                  <SelectItem value={Role?.FOUNDER || 'FOUNDER'}>Moderator</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
