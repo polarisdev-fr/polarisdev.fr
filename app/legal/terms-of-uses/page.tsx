@@ -11,7 +11,7 @@ export default function TermsOfUse() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
           <p className="mb-4">
-            By accessing or using the services provided by {COMPANY_FULL_NAME} ("we," "our," or "us"), you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please do not use our services.
+            By accessing or using the services provided by {COMPANY_FULL_NAME} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please do not use our services.
           </p>
         </section>
         
