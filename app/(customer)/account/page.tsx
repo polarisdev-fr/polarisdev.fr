@@ -27,6 +27,7 @@ import { currentUser } from '@/auth/current-user'
 import DeleteAccountButton from './delete-account-button'
 import { Role } from '@prisma/client'
 import { CheckIfUserHasRole, GetUserRole } from '@/lib/actions/user-settings'
+import Image from 'next/image'
 
 export default async function UserPage() {
   const user = await currentUser() // Fetch data server-side
@@ -54,7 +55,7 @@ export default async function UserPage() {
       </Breadcrumb>
       <div className="max-w-3xl mx-auto space-y-8 pt-4">
         <div className="flex flex-col sm:flex-row items-center gap-6">
-          <img
+          <Image
             src={user?.image ?? ""}
             alt={`${user?.name}'s avatar`}
             className="rounded-full w-24 h-24"

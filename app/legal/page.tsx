@@ -68,7 +68,7 @@ export default function LegalHub() {
         <div className="mt-12 p-6 bg-muted rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Need Help?</h2>
           <p className="mb-4">
-            If you have any questions about our legal policies or need further clarification, please don't hesitate to contact us.
+            If you have any questions about our legal policies or need further clarification, please don&apos;t hesitate to contact us.
           </p>
           <p className="font-semibold">
             Email: contact@polarisdev.fr
