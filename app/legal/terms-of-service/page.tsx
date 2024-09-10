@@ -12,7 +12,7 @@ export default function TermsOfService() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
           <p className="mb-4">
-            By accessing or using the services provided by {COMPANY_FULL_NAME} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), including our website, mobile applications, and any other software or services offered by us in connection to any of the foregoing (the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you don't agree to these Terms, do not use the Services.
+            By accessing or using the services provided by {COMPANY_FULL_NAME} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), including our website, mobile applications, and any other software or services offered by us in connection to any of the foregoing (the &quot;Services&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you don&apos;t agree to these Terms, do not use the Services.
           </p>
         </section>
         
