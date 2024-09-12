@@ -59,16 +59,16 @@ export async function UserDeleteAccount() {
     if(!user) {
         throw new Error('User not found')
     }
-
+    prisma.$disconnect()
     redirect('/')
 }
 
-export async function GetUserRole() {
+export async function GetUserRole(): Promise<string[]> {
     'use server'
 
     const authSession = await baseAuth()
     if(!authSession?.user) {
-        return null
+        return []
     }
 
     const user = await prisma.user.findUnique({
@@ -85,7 +85,7 @@ export async function GetUserRole() {
     }
 
     prisma.$disconnect()
-    return user.role
+    return [user.role]
 }
 
 export async function CheckIfUserHasRole(role: Array<string>) {

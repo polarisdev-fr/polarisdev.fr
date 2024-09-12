@@ -51,7 +51,7 @@ export default function Footer() {
                         <div>
                             <p className="text-white/50 font-title uppercase text-sm font-bold">Legals</p>
                             <ul className="mt-3 space-y-1">
-                                <li className="flex items-center justify-start gap-2"><Link href="/legal/privacy-policy" className="text-base hover:underline">Privacy Policy</Link></li>
+                                <li className="flex items-center justify-start gap-2"><Link href="/legal/privacy" className="text-base hover:underline">Privacy Policy</Link></li>
                                 <li className="flex items-center justify-start gap-2"><Link href="/legal/terms-of-service" className="text-base hover:underline">Terms of Service</Link></li>
                                 <li className="flex items-center justify-start gap-2"><Link href="/legal/terms-of-uses" className="text-base hover:underline">Terms of Uses</Link></li>
 

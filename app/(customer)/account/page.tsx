@@ -58,6 +58,8 @@ export default async function UserPage() {
           <Image
             src={user?.image ?? ""}
             alt={`${user?.name}'s avatar`}
+            width={96}
+            height={96}
             className="rounded-full w-24 h-24"
           />
           <div className="space-y-2 text-center sm:text-left">

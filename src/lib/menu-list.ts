@@ -40,7 +40,29 @@ import {
             label: "Dashboard",
             active: pathname.includes("/dashboard"),
             icon: LayoutGrid,
-            submenus: []
+            submenus: [],
+            role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
+          }
+        ]
+      },
+      {
+        groupLabel: "Products",
+        menus: [
+          {
+            href: "/products",
+            label: "Products",
+            active: pathname.includes("/products"),
+            icon: Bookmark,
+            submenus: [],
+            role: [Role.ADMIN, Role.FOUNDER]
+          },
+          {
+            href: "/products/admin",
+            label: "New Product",
+            active: pathname.includes("/products/new"),
+            icon: SquarePen,
+            submenus: [],
+            role: [Role.ADMIN, Role.FOUNDER]
           }
         ]
       },
@@ -110,7 +132,8 @@ import {
             label: "Tickets",
             active: pathname.includes("/tickets"),
             icon: Ticket,
-            submenus: []
+            submenus: [],
+            role: [Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
           },
         ]
       }

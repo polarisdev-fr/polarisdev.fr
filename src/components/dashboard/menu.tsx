@@ -27,17 +27,18 @@ interface MenuProps {
 export function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
   const menuList = getMenuList(pathname);
-  const [roles, setRole] = React.useState<Role>(Role.USER);
+  const [roles, setRole] = React.useState<Role[] | undefined>();
 
   useEffect(() => {
     const fetchRole = async () => {
       const role = await GetUserRole();
-      if (role) {
-          setRole(role);
-      }
+      const parsedRole = JSON.parse(JSON.stringify(role));
+      setRole(parsedRole);  
     }
     fetchRole();
   }, []);
+
+  console.log(roles);
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
@@ -72,7 +73,6 @@ export function Menu({ isOpen }: MenuProps) {
                       <TooltipProvider disableHoverableContent>
                         <Tooltip delayDuration={100}>
                           <TooltipTrigger asChild>
-                            {(!role || role.includes(roles)) ? ( // Check if the menu role includes the user's role
                               <Button
                                 variant={active ? "secondary" : "ghost"}
                                 className="w-full justify-start h-10 mb-1"
@@ -94,7 +94,6 @@ export function Menu({ isOpen }: MenuProps) {
                                   </p>
                                 </Link>
                               </Button>
-                            ) : null}
                           </TooltipTrigger>
                           {isOpen === false && (
                             <TooltipContent side="right">{label}</TooltipContent>
