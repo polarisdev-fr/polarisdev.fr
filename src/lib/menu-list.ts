@@ -57,9 +57,9 @@ import {
             role: [Role.ADMIN, Role.FOUNDER]
           },
           {
-            href: "/products/admin",
+            href: "/dashboard/products",
             label: "New Product",
-            active: pathname.includes("/products/new"),
+            active: pathname.includes("/dashboard/products"),
             icon: SquarePen,
             submenus: [],
             role: [Role.ADMIN, Role.FOUNDER]

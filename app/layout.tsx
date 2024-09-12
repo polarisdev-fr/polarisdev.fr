@@ -4,6 +4,7 @@ import { aquire, cn } from "@/lib/utils";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Orbitron } from 'next/font/google'
+import { Head } from "next/document";
 /*export const metadata: Metadata = {
   ...polarismetadata
 }*/
@@ -24,6 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
+      <head>
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "7abd75d791254ce9bbdf9cbc22b95e9b"}'
+          ></script>
+      </head>
       <body 
         className={cn(aquire.className, "min-h-screen bg-background antialiased")}
       >
