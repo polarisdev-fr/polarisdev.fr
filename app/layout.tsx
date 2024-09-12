@@ -4,7 +4,6 @@ import { aquire, cn } from "@/lib/utils";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Orbitron } from 'next/font/google'
-import { Head } from "next/document";
 /*export const metadata: Metadata = {
   ...polarismetadata
 }*/
