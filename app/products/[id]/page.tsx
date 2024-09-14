@@ -1,10 +1,23 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import {ContentLayout} from "@/components/main/content-layout"
+import { useEffect, useState } from "react"
 
 export default function ProductPage({params}: {params: {id: string}}) {
+  const [product, setProduct] = useState<any | null>(null)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await fetch(`/api/products?id=${params.id}`)
+      const data = await response.json()
+      setProduct(data)
+    }
+    fetchProduct()
+  })
+
   return (
     <ContentLayout
       title="Premium Wireless Headphones"

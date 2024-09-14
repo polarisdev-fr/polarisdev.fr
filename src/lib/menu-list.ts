@@ -38,7 +38,7 @@ import {
           {
             href: "/dashboard",
             label: "Dashboard",
-            active: pathname.includes("/dashboard"),
+            active: "/dashboard" === pathname,
             icon: LayoutGrid,
             submenus: [],
             role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
@@ -51,19 +51,11 @@ import {
           {
             href: "/products",
             label: "Products",
-            active: pathname.includes("/products"),
+            active: "/products" === pathname,
             icon: Bookmark,
             submenus: [],
-            role: [Role.ADMIN, Role.FOUNDER]
+            role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
           },
-          {
-            href: "/dashboard/products",
-            label: "New Product",
-            active: pathname.includes("/dashboard/products"),
-            icon: SquarePen,
-            submenus: [],
-            role: [Role.ADMIN, Role.FOUNDER]
-          }
         ]
       },
       /*{
@@ -106,14 +98,6 @@ import {
       {
         groupLabel: "Settings",
         menus: [
-          {
-            href: "/users",
-            label: "Users",
-            active: pathname.includes("/users"),
-            icon: Users,
-            role: [Role.ADMIN, Role.FOUNDER],
-            submenus: []
-          },
           {
             href: "/account",
             label: "Account",

@@ -31,7 +31,7 @@ import Image from 'next/image'
 
 export default async function UserPage() {
   const user = await currentUser() // Fetch data server-side
-
+  
   return (
     <ContentLayout title="User Profile">
       <Breadcrumb>
