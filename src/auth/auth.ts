@@ -11,12 +11,12 @@ export const { handlers, auth: baseAuth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     Github({
-        clientId: env.AUTH_GITHUB_ID,
-        clientSecret: env.AUTH_GITHUB_SECRET,
+        clientId: process.env.AUTH_GITHUB_ID,
+        clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
     Discord({
-        clientId: env.AUTH_DISCORD_ID,
-        clientSecret: env.AUTH_DISCORD_SECRET,
+        clientId: process.env.AUTH_DISCORD_ID,
+        clientSecret: process.env.AUTH_DISCORD_SECRET,
     })
   ],
   pages: {
