@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://polarisdev.fr/',
       lastModified: new Date().toISOString(),
       changeFrequency: 'weekly',
-      priority: 0.5,
+      priority: 10,
     },
     {
       url: 'https://polarisdev.fr/contact',
@@ -18,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://polarisdev.fr/pricing',
       lastModified: new Date().toISOString(),
       changeFrequency: 'weekly',
+      priority: 0.5,
+    }
+    {
+      url: 'https://polarisdev.fr/services',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'yearly',
       priority: 0.5,
     }
   ]
