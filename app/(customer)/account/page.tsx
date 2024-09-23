@@ -28,9 +28,12 @@ import DeleteAccountButton from './delete-account-button'
 import { Role } from '@prisma/client'
 import { CheckIfUserHasRole, GetUserRole } from '@/lib/actions/user-settings'
 import Image from 'next/image'
+import Loading from '@/components/main/loading'
 
 export default async function UserPage() {
   const user = await currentUser() // Fetch data server-side
+
+  if(!user) return <Loading/>
   
   return (
     <ContentLayout title="User Profile">

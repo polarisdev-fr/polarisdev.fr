@@ -1,3 +1,4 @@
+// app/tickets/[id]/chat-component.tsx
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
@@ -5,30 +6,25 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { SendHorizontal, MoreVertical, Pencil } from "lucide-react"
+import { SendHorizontal, MoreVertical, Pencil, Trash } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User } from '@prisma/client'
-
-interface Message {
-  id: number
-  content: string
-  sender: 'user' | 'agent'
-}
+import { User, Message } from '@prisma/client'
+import { toast } from 'sonner'
 
 interface ChatComponentProps {
-  userSession: User | null
-  initialMessages: Message[]
+  ticketId: string
+  initialMessages: (Message & { user: User })[]
 }
 
-export default function ChatComponent({ userSession, initialMessages }: ChatComponentProps) {
-  const [messages, setMessages] = useState<Message[]>(initialMessages)
+export default function ChatComponent({ ticketId, initialMessages }: ChatComponentProps) {
+  const [messages, setMessages] = useState<(Message & { user: User })[]>(initialMessages)
   const [inputMessage, setInputMessage] = useState('')
-  const [editingMessageId, setEditingMessageId] = useState<number | null>(null)
+  const [editingMessageId, setEditingMessageId] = useState<string | null>(null)
   const scrollAreaRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,37 +33,33 @@ export default function ChatComponent({ userSession, initialMessages }: ChatComp
     }
   }, [messages])
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
     if (inputMessage.trim() !== '') {
-      if (editingMessageId) {
-        setMessages(messages.map(msg => 
-          msg.id === editingMessageId ? { ...msg, content: inputMessage } : msg
-        ))
-        setEditingMessageId(null)
-      } else {
-        const newMessage: Message = {
-          id: messages.length + 1,
-          content: inputMessage,
-          sender: 'user'
-        }
-        setMessages([...messages, newMessage])
+      try {
+        const response = await fetch(`/api/tickets/${ticketId}/messages`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ content: inputMessage }),
+        })
 
-        // Simulate agent response
-        setTimeout(() => {
-          const agentResponse: Message = {
-            id: messages.length + 2,
-            content: "Thank you for your message. Our support team will get back to you shortly.",
-            sender: 'agent'
-          }
-          setMessages(prevMessages => [...prevMessages, agentResponse])
-        }, 1000)
+        if (!response.ok) {
+          throw new Error('Failed to send message')
+        }
+
+        const newMessage = await response.json()
+        setMessages([...messages, newMessage])
+        setInputMessage('')
+      } catch (error) {
+        console.error('Error sending message:', error)
+        alert('Failed to send message. Please try again.')
       }
-      setInputMessage('')
     }
   }
 
-  const handleEditMessage = (id: number) => {
+  const handleEditMessage = (id: string) => {
     const messageToEdit = messages.find(msg => msg.id === id)
     if (messageToEdit) {
       setInputMessage(messageToEdit.content)
@@ -75,24 +67,44 @@ export default function ChatComponent({ userSession, initialMessages }: ChatComp
     }
   }
 
+  const handleDeleteMessage = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this message?')) {
+      try {
+        const response = await fetch(`/api/tickets/${ticketId}/messages/${id}`, {
+          method: 'DELETE',
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to delete message')
+        }
+
+        setMessages(messages.filter(msg => msg.id !== id))
+        toast.success('Message deleted successfully.')
+      } catch (error) {
+        console.error('Error deleting message:', error)
+        toast.error('Failed to delete message. Please try again.')
+      }
+    }
+  }
+
   return (
     <div className="flex flex-col h-[500px]">
       <ScrollArea className="flex-grow mb-4" ref={scrollAreaRef}>
         {messages.map((message) => (
-          <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
-            <div className={`flex items-start ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+          <div key={message.id} className={`flex ${message.user.role === 'USER' ? 'justify-end' : 'justify-start'} mb-4`}>
+            <div className={`flex items-start ${message.user.role === 'USER' ? 'flex-row-reverse' : 'flex-row'}`}>
               <Avatar className="w-8 h-8">
-                <AvatarFallback>{message.sender === 'user' ? userSession?.name?.[0].toUpperCase() : 'A'}</AvatarFallback>
-                <AvatarImage src={message.sender === 'user' ? userSession?.image ?? '' : ''} alt={userSession?.name?.[0]} />
+                <AvatarFallback>{message.user.name?.[0].toUpperCase()}</AvatarFallback>
+                <AvatarImage src={message.user.image ?? ''} alt={message.user.name?.[0]} />
               </Avatar>
               <div 
                 className={`mx-2 px-3 py-2 rounded-lg ${
-                  message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-secondary'
+                  message.user.role === 'USER' ? 'bg-primary text-primary-foreground' : 'bg-secondary'
                 }`}
               >
                 {message.content}
               </div>
-              {message.sender === 'user' && (
+              {message.user.role === 'USER' && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="sm">
@@ -104,6 +116,10 @@ export default function ChatComponent({ userSession, initialMessages }: ChatComp
                     <DropdownMenuItem onClick={() => handleEditMessage(message.id)}>
                       <Pencil className="mr-2 h-4 w-4" />
                       <span>Edit Message</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDeleteMessage(message.id)}>
+                      <Trash className="mr-2 h-4 w-4" />
+                      <span>Delete Message</span>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

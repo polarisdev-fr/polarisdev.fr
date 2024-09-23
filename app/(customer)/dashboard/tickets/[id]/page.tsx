@@ -1,33 +1,41 @@
+// app/tickets/[id]/page.tsx
 import Link from "next/link"
 import { ContentLayout } from "@/components/dashboard/content-layout"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-import { currentUser } from "@/auth/current-user"
+import { prisma } from "@/prisma"
 import ChatComponent from "./chat-component"
+import { baseAuth } from "@/auth/auth"
+import { redirect } from "next/navigation"
 
-// Simulated function to fetch user session
-async function fetchUserSession() {
-  // In a real application, this would be an API call or database query
-  await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
-  return await currentUser();
+async function fetchTicketData(ticketId: string) {
+  const ticket = await prisma.supportTicket.findUnique({
+    where: { id: ticketId },
+    include: {
+      messages: {
+        orderBy: { createdAt: 'asc' },
+        include: { sender: true },
+      },
+    },
+  })
+
+  if (!ticket) {
+    redirect('/dashboard/tickets')
+  }
+  prisma.$disconnect()
+  return ticket
 }
 
-// Simulated function to fetch initial messages
-async function fetchInitialMessages() {
-  // In a real application, this would be an API call or database query
-  await new Promise(resolve => setTimeout(resolve, 500)) // Simulate network delay
-  return [
-    { id: 1, content: "Hello! How can I assist you today?", sender: "agent" as "agent" },
-  ]
-}
+export default async function TicketPage({ params }: { params: { id: string } }) {
+  const session = await baseAuth()
+  if (!session || !session.user?.email) {
+    throw new Error('Not authenticated')
+  }
 
-export default async function Component() {
-  const userSession = await fetchUserSession()
-  const initialMessages = await fetchInitialMessages()
+  const ticketData = await fetchTicketData(params.id)
 
   return (
-    <ContentLayout title="Support">
+    <ContentLayout title="Support Ticket">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -37,17 +45,29 @@ export default async function Component() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Support</BreadcrumbPage>
+            <BreadcrumbLink asChild>
+              <Link href="/tickets">Tickets</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Ticket #{ticketData.id}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       
       <Card className="mt-6">
         <CardHeader>
-          <CardTitle>Support Chat</CardTitle>
+          <CardTitle>Ticket: {ticketData.title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <ChatComponent userSession={userSession} initialMessages={initialMessages} />
+          <ChatComponent 
+            ticketId={ticketData.id} 
+            initialMessages={ticketData.messages.map(message => ({
+              ...message,
+              user: message.sender
+            }))} 
+          />
         </CardContent>
       </Card>
     </ContentLayout>

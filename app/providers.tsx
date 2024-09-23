@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { SessionProvider } from "next-auth/react"
 import { PropsWithChildren } from "react"
 import { GoogleAnalytics } from '@next/third-parties/google'
-import { env } from "@/env"
 
 const queryClient = new QueryClient()
 
