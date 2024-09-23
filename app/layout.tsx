@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
       <head>
+          <link rel="favicon" href="/favicon.ico" />
           <script
             defer
             src="https://static.cloudflareinsights.com/beacon.min.js"
