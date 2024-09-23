@@ -101,6 +101,7 @@ export default function ProductsPage() {
                 <Badge className="mt-2">{product.active ? 'Available' : 'Unavailable'}</Badge>
                 <p className="text-2xl font-bold mt-2">
                   {price ? `$${(price.unit_amount! / 100).toFixed(2)}` : 'Price not available'}
+                  
                 </p>
               </CardContent>
               <CardFooter className='flex flex-row space-x-2'>

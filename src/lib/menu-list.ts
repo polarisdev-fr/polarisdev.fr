@@ -7,7 +7,8 @@ import {
     SquarePen,
     LayoutGrid,
     LucideIcon,
-    Ticket
+    Ticket,
+    FolderKanban
   } from "lucide-react";
   
   type Submenu = {
@@ -53,6 +54,14 @@ import {
             label: "Products",
             active: "/products" === pathname,
             icon: Bookmark,
+            submenus: [],
+            role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
+          },
+          {
+            href: "/dashboard/products",
+            label: "My Products",
+            active: "/dashboard/products" === pathname,
+            icon: FolderKanban,
             submenus: [],
             role: [Role.USER, Role.HELPER, Role.MODERATOR, Role.ADMIN, Role.FOUNDER]
           },
