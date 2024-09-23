@@ -5,14 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: 'https://polarisdev.fr/',
       lastModified: new Date().toISOString(),
-      changeFrequency: 'weekly',
-      priority: 10,
+      changeFrequency: 'never',
+      priority: 1,
     },
     {
       url: 'https://polarisdev.fr/login',
       lastModified: new Date().toISOString(),
-      changeFrequency: 'yearly',
-      priority: 5,
+      changeFrequency: 'never',
+      priority: 0.7,
     },
     {
       url: 'https://polarisdev.fr/contact',
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: 'https://polarisdev.fr/services',
       lastModified: new Date().toISOString(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'monthly',
       priority: 0.5,
     }
   ]
