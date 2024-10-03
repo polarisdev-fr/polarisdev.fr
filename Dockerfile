@@ -21,6 +21,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Run Prisma migrations before building
+RUN npx prisma generate
+RUN npx prisma migrate deploy
+
 # Build the Next.js project
 RUN yarn build
 
@@ -54,5 +58,9 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
+# Set the DATABASE_URL environment variable for Prisma to use
+ENV DATABASE_URL="postgresql://postgres:randompassword@localhost:5432/polaris?schema=public&connection_limit=10"
+
 # Start the application
 CMD ["node", "server.js"]
+
