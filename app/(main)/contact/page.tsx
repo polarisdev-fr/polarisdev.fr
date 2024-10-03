@@ -31,9 +31,9 @@ export default function ContactPage() {
     const handleSubmit = async () => {
         const endpoint = "/api/contact";
         const submitData = new FormData();
-        for (const k in formData) {
+        (Object.keys(formData) as (keyof typeof formData)[]).forEach((k) => {
             submitData.append(k, formData[k]);
-        }
+        });
 
         if(!formData.token || formData.name === '' || formData.email === '' || formData.message === '') {
             toast.error("Please fill out all fields and complete the captcha.");
