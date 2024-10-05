@@ -8,6 +8,16 @@ services:
       - pgdata:/var/lib/postgresql/data 
     ports:
       - 5432:5432
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
  
   #adminer:
   #  image: adminer
@@ -17,3 +27,4 @@ services:
  
 volumes:
   pgdata:
+  web:
