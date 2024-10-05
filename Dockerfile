@@ -25,7 +25,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Run Prisma migrations and generate the Prisma client
-ENV DATABASE_URL="your-production-database-url" # Make sure to set this to the correct DB URL in production
+ENV DATABASE_URL="postgresql://postgres:randompassword@localhost:5432/polaris?schema=public&connection_limit=10"
 RUN npx prisma migrate deploy     # Apply database migrations
 RUN npx prisma generate            # Generate Prisma client
 
