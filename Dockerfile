@@ -15,11 +15,19 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Install Prisma CLI separately
+RUN yarn add prisma
+
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Run Prisma migrations and generate the Prisma client
+ENV DATABASE_URL="your-production-database-url" # Make sure to set this to the correct DB URL in production
+RUN npx prisma migrate deploy     # Apply database migrations
+RUN npx prisma generate            # Generate Prisma client
 
 # Build the Next.js project
 RUN yarn build
@@ -56,4 +64,3 @@ ENV HOSTNAME "0.0.0.0"
 
 # Start the application
 CMD ["node", "server.js"]
-
