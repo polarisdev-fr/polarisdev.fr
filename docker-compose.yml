@@ -8,12 +8,3 @@ services:
       POSTGRES_DB: polaris
     ports:
       - "5432:5432"
-
-  web:
-    build: .
-    environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/polaris?schema=public"
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
