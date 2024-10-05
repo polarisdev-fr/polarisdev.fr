@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN npx prisma generate                   # <---important to support Prisma query engine in Alpine Linux in final image
+RUN npx prisma generate
 RUN npm run build
 
 # Production image, copy all the files and run next
