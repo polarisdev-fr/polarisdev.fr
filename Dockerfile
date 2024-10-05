@@ -24,8 +24,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Use the correct database URL from the docker-compose service
+ENV DATABASE_URL="postgresql://user:password@db:5432/polaris?schema=public" 
+
 # Run Prisma migrations and generate the Prisma client
-ENV DATABASE_URL="postgresql://postgres:randompassword@localhost:5432/polaris?schema=public&connection_limit=10"
 RUN npx prisma migrate deploy     # Apply database migrations
 RUN npx prisma generate            # Generate Prisma client
 
