@@ -55,6 +55,7 @@
     "react-twc": "^1.4.2",
     "recharts": "^2.12.7",
     "resend": "^4.0.0",
+    "sharp": "^0.33.5",
     "sonner": "^1.5.0",
     "stripe": "^16.9.0",
     "tailwind-merge": "^2.5.2",
