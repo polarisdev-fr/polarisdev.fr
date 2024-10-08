@@ -8,7 +8,7 @@ export default function UserDeleteButton({user}: {user: any}) {
         <>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction className="bg-red-700 text-destructive-foreground" onClick={() => deleteUserAccount(user?.id as string)}>
-                  elete Account
+                  Delete Account
             </AlertDialogAction>
         </>
     )
