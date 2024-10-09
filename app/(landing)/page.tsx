@@ -10,7 +10,7 @@ import { COMPANY_FULL_NAME } from "@/lib/constants";
 
 export default function Home() {
   return (
-    <ContentLayout title={COMPANY_FULL_NAME} subtitle="Make your dreams reality">
+    <ContentLayout title={COMPANY_FULL_NAME} subtitle="Make your dreams a reality">
       <PreviewMockup url="/assets/preview.png" alt="Preview"/>
       <MarqueeBranding/>
       <section id="features" className="max-w-7xl mx-auto relative lg:pt-16 z-1 pb-16">
