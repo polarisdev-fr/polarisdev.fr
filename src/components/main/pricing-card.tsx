@@ -76,7 +76,7 @@ export const PricingCard = ({ isYearly, title, monthlyPrice, yearlyPrice, oneTim
       </CardContent>
     </div>
     <CardFooter className="mt-2">
-      <BuyButton text={actionLabel} />
+      <BuyButton text={actionLabel} priceId="'price_1PtJaRRucEaeKigNpeBzNTH8'" />
     </CardFooter>
   </Card>
 )

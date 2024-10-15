@@ -2,10 +2,10 @@
 import { BuyAction } from "@/lib/actions/buy-action";
 import { Button } from "../ui/button";
 
-export const BuyButton = ({ text }: { text: string }) => {
+export const BuyButton = ({ text, priceId }: { text: string, priceId: string }) => {
 
   const data: any = {
-    priceId: 'price_1PtJaRRucEaeKigNpeBzNTH8',
+    priceId,
     isSubscription: 'true',
   }
 

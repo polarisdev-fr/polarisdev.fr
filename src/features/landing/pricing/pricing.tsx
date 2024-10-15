@@ -13,6 +13,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { Section } from "../section";
+import { BuyAction } from "@/lib/actions/buy-action";
 
 export const PricingSection = async () => {
   const user = await currentUser();
@@ -34,22 +35,42 @@ export const PricingSection = async () => {
           description="Get started with essential development tools and support."
           items={[
             "Basic API Integration",
-            "UI/UX Design Consultation",
-            "Community Support",
+            "UI/UX Design Development",
+            "Standard Support",
           ]}
         >
-          <Link
-            href="/api/auth/signin"
-            className={cn(
-              buttonVariants({
-                size: "lg",
-                variant: "outline",
-              }),
-              "w-full"
-            )}
-          >
-            Sign Up
-          </Link>
+          {user ? (
+            <form className="w-full">
+              <Button
+                formAction={async () => {
+                  "use server";
+                  const formData = new FormData();
+                  formData.append("priceId", "starter");
+                  formData.append("isSubscription", "true");
+
+                  await BuyAction(formData);
+                }}
+                size="lg"
+                variant="default"
+                className="w-full"
+              >
+                Grab it
+              </Button>
+            </form>
+          ) : (
+            <Link
+              href="/api/auth/signin"
+              className={cn(
+                buttonVariants({
+                  size: "lg",
+                  variant: "outline",
+                }),
+                "w-full"
+              )}
+            >
+              Sign Up
+            </Link>
+          )}
         </PricingCard>
         <PricingCard
           title="Enterprise"
@@ -67,7 +88,11 @@ export const PricingSection = async () => {
               <Button
                 formAction={async () => {
                   "use server";
-                  //await upgradeToEnterprise("");
+                  const formData = new FormData();
+                  formData.append("priceId", "enterprise");
+                  formData.append("isSubscription", "true");
+
+                  await BuyAction(formData);
                 }}
                 size="lg"
                 variant="default"
@@ -106,7 +131,10 @@ export const PricingSection = async () => {
               <Button
                 formAction={async () => {
                   "use server";
-                  //await upgradeToPremium("");
+                  const formData = new FormData();
+                  formData.append("priceId", "price_1Q8emORucEaeKigNDvxivY2n");
+                  formData.append("isSubscription", "true");
+                  await BuyAction(formData);
                 }}
                 size="lg"
                 variant="default"
