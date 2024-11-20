@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/ap5vLEqqUVw
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import Image from "next/image"
 import Link from "next/link"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
@@ -51,6 +46,11 @@ const brands = [
         tooltip: "SkyGames",
         href: "https://skygames.fr",
         image: "/assets/skygames.png",
+    },
+    {
+        tooltip: "TechnoSphere",
+        href: "https://technosphere.app",
+        image: "/assets/technosphere.png",
     },
     {
         tooltip: "EveryDance",
